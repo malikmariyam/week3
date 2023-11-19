@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+void displayBillForSlab(int matrix[][3], int slabIndex, const string& studentID, int unitRangeStart, int unitRangeEnd, int costPerUnit) {
+    cout << "Student ID: " << studentID << endl;
+
+    cout << "Bill for slab " << slabIndex + 1 << " is" << endl;
+    for (int i = 0; i < 3; ++i) {  
+        int units = matrix[slabIndex][i]; 
+        int totalCost = units * costPerUnit;
+        cout << totalCost << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    const string studentID = "Mariyam siddique(021)"; 
+    int sourceMatrix[3][3] = {
+        {55, 65, 75},
+        {120, 150, 170},
+        {210, 230, 240}
+    };
+
+    char choice;
+
+    do {
+        cout << "Student ID: " << studentID << endl;
+        cout << "Enter your choice\n";
+        cout << "Press 1 to display the bill of slab 1 and slab 2.\n";
+        cout << "Press 2 to display the bill of slab 3.\n";
+        cout << "Enter any other key to exit.\n";
+        cin >> choice;
+
+        switch (choice) {
+            case '1':
+                displayBillForSlab(sourceMatrix, 0, studentID, 0, 100, 10); 
+                displayBillForSlab(sourceMatrix, 1, studentID, 101, 200, 15); 
+                break;
+            case '2':
+                displayBillForSlab(sourceMatrix, 2, studentID, 201, 300, 20); 
+                break;
+            default:
+                cout << "Exiting the program.\n";
+                break;
+        }
+
+    } while (choice == '1' || choice == '2');
+
+    return 0;
+}
